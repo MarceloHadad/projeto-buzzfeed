@@ -1,0 +1,35 @@
+<div class="quizz__container">
+  <div class="quizz_logo">
+    <img
+      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F6c%2FStar_Wars_Logo.svg%2F2560px-Star_Wars_Logo.svg.png&f=1&nofb=1&ipt=23fd65fb69492f47c299dc4dd6e78f398c1a438a033ab9ce432d06dade0f76a5&ipo=images"
+      alt=""
+    />
+    <h3>{{ title }}</h3>
+  </div>
+  <div class="quizz_questions_container">
+    <div *ngIf="!finished" class="quizz_questions">
+      <h3>{{ questionSelected.question }}</h3>
+    </div>
+    <div *ngIf="!finished" class="quizz_options">
+      <button
+        *ngFor="let option of questionSelected.options; let i = index"
+        (click)="playerChoose(option.alias)"
+        class="btn-option"
+      >
+        {{ option.name }}
+      </button>
+    </div>
+  </div>
+  <div
+    *ngIf="finished"
+    class="quizz_results"
+    [ngStyle]="{
+      'border': '1px solid ' + answerSelected.backgroundColor
+      }"
+  >
+    <h1
+    [ngStyle]="{'text-shadow':'0 0 1px' + answerSelected.backgroundColor
+     + ', 0 0 1px' + answerSelected.backgroundColor + ', 0 0 5px' + answerSelected.backgroundColor}">{{ answerSelected.title }}</h1>
+    <p>{{ answerSelected.description }}</p>
+  </div>
+</div>
